@@ -4,7 +4,7 @@
 mongodb://localhost:27017/your-db-name-here
 ```
 
-## The connection URI must be added to your .env file with the key `MONGODB_CONNECTION_URI`
+## The connection URI must be added to your .env file with the key `MONGO_CONNECTION_URI`
 
 ### If you just want to run a Docker container running MongoDB, you can use the command (assuming you have Docker running locally):
 
