@@ -2,15 +2,13 @@ import { MongoClient } from "mongodb";
 
 export const connectToMongo = async () => {
   try {
-    const connectionStr = process.env.MONGODB_CONNECTION_URI;
-
+    const connectionStr = process.env.MONGO_CONNECTION_URI;
     const client = new MongoClient(connectionStr, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
     const db = await client.connect();
-    console.log("Connection to Mongo successful");
+    console.log("Successfully connected to MongoDB.");
     return db;
   } catch (error) {
     console.log("error: ", error);
