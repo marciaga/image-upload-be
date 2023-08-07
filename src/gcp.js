@@ -12,13 +12,14 @@ export const uploadFileToStorage = async (file) =>
     const bucketName = process.env.GCP_STORAGE_BUCKET_NAME;
     const bucket = storage.bucket(bucketName);
     const { buffer, originalname } = file;
-    const blob = bucket.file(originalname.replace(/ /g, "_"));
+    const newFileName = originalname.replace(/ /g, "_");
+    const blob = bucket.file(newFileName);
     // omit spaces in filename
     const blobStream = blob.createWriteStream({ resumable: false });
 
     blobStream
       .on("finish", () => {
-        const publicUrl = `https://storage.googleapis.com/${bucketName}/${originalname}`;
+        const publicUrl = `https://storage.googleapis.com/${bucketName}/${newFileName}`;
         resolve(publicUrl);
       })
       .on("error", (e) => {
